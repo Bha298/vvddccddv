@@ -8,7 +8,7 @@ pipeline{
          }
          stage('mvn testing '){
             steps{
-                    sh 'mvn test install'
+                    sh 'mvn test '
             }
          }
          }
