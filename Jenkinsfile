@@ -1,10 +1,6 @@
 pipeline{
     
-    agent {
-        node{
-            lable 'maven'
-        }
-    }
+    agent any
     
     stages {
         
@@ -28,16 +24,7 @@ pipeline{
                 }
             }
         }
-        stage('Integration testing'){
-            
-            steps{
-                
-                script{
-                    
-                    sh 'mvn verify -DskipUnitTests'
-                }
-            }
-        }
+       
         stage('Maven build'){
             
             steps{
