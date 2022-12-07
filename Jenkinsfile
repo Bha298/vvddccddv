@@ -1,49 +1,51 @@
-
-node {
-    stage 'Clone the project'
-     git branch: 'main', url: 'https://github.com/Bha298/vvddccddv.git'
-  
- 
+pipeline{
+    
+    agent any 
+    
+    stages {
         
-        stage("Tests and Deployment") {
-            parallel 'Unit tests': {
-                stage("Runing unit tests") {
-                    try {
-                        sh "./mvnw test -Punit"
-                    } catch(err) {
-                        step([$class: 'JUnitResultArchiver', testResults: 
-                          '**/target/surefire-reports/TEST-*UnitTest.xml'])
-                        throw err
-                    }
-                   step([$class: 'JUnitResultArchiver', testResults: 
-                     '**/target/surefire-reports/TEST-*UnitTest.xml'])
-                }
-            }, 'Integration tests': {
-                stage("Runing integration tests") {
-                    try {
-                        sh "./mvnw test -Pintegration"
-                    } catch(err) {
-                        step([$class: 'JUnitResultArchiver', testResults: 
-                          '**/target/surefire-reports/TEST-' 
-                            + '*IntegrationTest.xml'])
-                        throw err
-                    }
-                    step([$class: 'JUnitResultArchiver', testResults: 
-                      '**/target/surefire-reports/TEST-' 
-                        + '*IntegrationTest.xml'])
-                }
-            }
+        stage('Git Checkout'){
             
-            stage("Staging") {
-                sh "pid=\$(lsof -i:8989 -t); kill -TERM \$pid " 
-                  + "|| kill -KILL \$pid"
-                withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
-                    sh 'nohup ./mvnw spring-boot:run -Dserver.port=8989 &'
-                }   
+            steps{
+                
+                script{
+                    
+                   '
+                }
             }
         }
-    }
+        stage('UNIT testing'){
+            
+            steps{
+                
+                script{
+                    
+                    sh 'mvn test'
+                }
+            }
+        }
+        stage('Integration testing'){
+            
+            steps{
+                
+                script{
+                    
+                    sh 'mvn verify -DskipUnitTests'
+                }
+            }
+        }
+        stage('Maven build'){
+            
+            steps{
+                
+                script{
+                    
+                    sh 'mvn clean install'
+                }
+            }
+        }
+      
+        }
+        
 }
-
-
 
