@@ -3,14 +3,7 @@ node {
     stage 'Clone the project'
      git branch: 'main', url: 'https://github.com/Bha298/vvddccddv.git'
   
-    dir('spring-jenkins-pipeline') {
-        stage("Compilation and Analysis") {
-            parallel 'Compilation': {
-                sh "./mvnw clean install -DskipTests"
-            }, 'Static Analysis': {
-               
-            }
-        }
+ 
         
         stage("Tests and Deployment") {
             parallel 'Unit tests': {
