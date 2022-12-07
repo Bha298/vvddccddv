@@ -20,7 +20,7 @@ pipeline{
                 
                 script{
                     
-                    sh 'mvn test'
+                    bat 'mvn test'
                 }
             }
         }
@@ -31,7 +31,7 @@ pipeline{
                 
                 script{
                     
-                    sh 'mvn clean install'
+                    bat 'mvn clean install'
                 }
             }
         }
