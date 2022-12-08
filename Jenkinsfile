@@ -64,7 +64,7 @@ pipeline{
         stage('docker push'){
             steps{
                 script{
-                 bat 'docker push bharadwaz1/hello-simple'   
+                 bat 'docker tag 0.0.1-SNAPSHOT bharadwaz1/new:hello-sample'   
                 }
             }
         }
