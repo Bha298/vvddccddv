@@ -46,7 +46,19 @@ pipeline{
             }
         }
     }
-        
+        stage('docker login){
+              steps{
+                  script{
+                      withCredentials([string(credentialsId: 'bharadwaz11', variable: 'dockerhubped')]) {
+                          bat 'docker login -u bharadwaz1 -p {dockerhubped}'
+                      }
+                          bat 'docker push bharadwaz1/hello-simple'
+                      }
+              }
+              }
+                      
+                          
+}
         
       
         }
