@@ -47,7 +47,7 @@ pipeline{
         }
     }
        
-        stage('docker login')
+        stage('docker login'){
         
         steps{
             
@@ -63,4 +63,4 @@ pipeline{
         }
         
 }
-
+}
