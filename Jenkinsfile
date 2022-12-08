@@ -42,7 +42,7 @@ pipeline{
             
             script{
                 
-                bat 'dockerfile build'
+                bat 'mvn clean package dockerfile:build'
             }
         }
     }
