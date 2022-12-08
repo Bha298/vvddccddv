@@ -35,6 +35,19 @@ pipeline{
                 }
             }
         }
+        
+        stage('docker image'){
+        
+        steps{
+            
+            script{
+                
+                bat 'dockerfile build'
+            }
+        }
+    }
+        
+        
       
         }
         
